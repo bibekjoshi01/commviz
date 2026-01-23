@@ -1,4 +1,5 @@
 import streamlit as st
+from modules.convolution import run_convolution_module
 from modules.impulse_response import run_impulse_response_module
 from modules.signals import run_signals_module
 from modules.basic_operations import run_basic_operations_module
@@ -17,6 +18,7 @@ signal_topic = st.sidebar.radio(
         "Systems",
         "System Properties",
         "Impulse Respnose",
+        "Convolution",
     ],
     key="signal_analysis",
 )
@@ -31,3 +33,5 @@ elif signal_topic == "System Properties":
     run_system_properties_module()
 elif signal_topic == "Impulse Respnose":
     run_impulse_response_module()
+elif signal_topic == "Convolution":
+    run_convolution_module()
