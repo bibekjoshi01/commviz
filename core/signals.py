@@ -82,6 +82,44 @@ class Signal:
             formula=f"({self.formula}) · ({other.formula})",
         )
 
+    # ---------------- Energy & Power ----------------
+    def energy(self, t):
+        """
+        Discrete approximation of signal energy:
+        E = ∫ |x(t)|² dt
+        """
+        x = self.evaluate(t)
+        return np.trapezoid(np.abs(x) ** 2, t)
+
+    def power(self, t):
+        """
+        Discrete approximation of average power:
+        P = lim(T→∞) (1/2T) ∫ |x(t)|² dt
+        Approximated by time average.
+        """
+        x = self.evaluate(t)
+        T = t[-1] - t[0]
+        if T == 0:
+            return 0.0
+        return (1 / T) * np.trapezoid(np.abs(x) ** 2, t)
+
+    def classify_signal(self, t):
+        E = self.energy(t)
+
+        P = self.power(t)
+
+        # Check if energy saturates (energy signal) vs grows linearly (power signal)
+        T = t[-1] - t[0]
+        if E < 1e3 and P < 1e-3:
+            return "Zero Signal", E, P
+
+        # Estimate trend: if energy grows roughly linearly with T → power signal
+        dE_dt = E / T
+        if dE_dt > 0.1:
+            return "Power Signal", E, P
+        else:
+            return "Energy Signal", E, P
+
 
 # Signal Factory Functions
 # -----------------------------------------------------------------------
