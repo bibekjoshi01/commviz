@@ -1,18 +1,18 @@
-import streamlit as st
 import numpy as np
-from core.signals import (
+import streamlit as st
+
+from src.core.signals import (
+    BASIC_SIGNALS,
+    exponential,
+    ramp,
+    rectangular_pulse,
+    sinusoid,
     time_axis,
     triangular_wave,
     unit_impulse,
     unit_step,
-    ramp,
-    rectangular_pulse,
-    sinusoid,
-    exponential,
-    time_axis,
-    BASIC_SIGNALS,
 )
-from ui.plots import plot_signal
+from src.ui.plots import plot_signal
 
 
 def generate_signal_ui(
@@ -148,12 +148,12 @@ def run_convolution_module():
     st.header("Convolution Operation")
     st.markdown(
         """
-        **Definition:** Convolution is a mathematical operation that expresses the output of a system 
-        in terms of its input signal and impulse response.  
-        
-        **Continuous-time formula:** $y(t) = \\int_{-\\infty}^{\\infty} x(\\tau) h(t-\\tau) d\\tau$  
+        **Definition:** Convolution is a mathematical operation that expresses the output of a system
+        in terms of its input signal and impulse response.
 
-        **Discrete-time formula:** $y[n] = \\sum_{k=-\\infty}^{\\infty} x[k] h[n-k]$  
+        **Continuous-time formula:** $y(t) = \\int_{-\\infty}^{\\infty} x(\\tau) h(t-\\tau) d\\tau$
+
+        **Discrete-time formula:** $y[n] = \\sum_{k=-\\infty}^{\\infty} x[k] h[n-k]$
         """
     )
     st.markdown("----")
@@ -182,6 +182,6 @@ def run_convolution_module():
     st.markdown("### Output Signal (Convoluted)")
     st.markdown("<div style='margin-top:20px'></div>", unsafe_allow_html=True)
     st.plotly_chart(
-        plot_signal(t, y, title=f"y(t) = signal1 * singal2"),
+        plot_signal(t, y, title="y(t) = signal1 * singal2"),
         use_container_width=True,
     )

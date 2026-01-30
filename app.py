@@ -1,7 +1,8 @@
 import streamlit as st
-from modules.basic_operations import run_basic_operations_module
-from modules.energy_power_signals import run_energy_power_module
-from modules.signals import run_signals_module
+
+from src.modules.basic_operations import run_basic_operations_module
+from src.modules.energy_power_signals import run_energy_power_module
+from src.modules.signals import run_signals_module
 
 st.set_page_config(layout="wide", page_title="CS Viz", menu_items={})
 st.sidebar.markdown("## Comm. Systems Visualizer")
@@ -16,6 +17,13 @@ signal_topic = st.sidebar.radio(
         "Convolution",
     ],
     key="signal_analysis",
+)
+digital_comm_topic = st.sidebar.radio(
+    "Digital Communication",
+    [
+        "Sampling Theorem",
+    ],
+    key="digital_comm",
 )
 
 if signal_topic == "Signal Fundamentals":

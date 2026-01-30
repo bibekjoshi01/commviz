@@ -1,10 +1,11 @@
-import streamlit as st
 import numpy as np
+import streamlit as st
 
-from core.signals import get_available_signals
-from ui.build_signals import build_signal_ui
-from ui.plots import plot_signal
-from utils.time_axis import TimeAxis
+# Project Imports
+from src.core.signals import get_available_signals
+from src.ui.build_signals import build_signal_ui
+from src.ui.plots import plot_signal
+from src.utils.time_axis import TimeAxis
 
 
 def run_energy_power_module():
@@ -112,8 +113,8 @@ def run_energy_power_module():
     $$
 
     ### Interpretation
-    - **Energy signals:** finite energy, zero power  
-    - **Power signals:** infinite energy, finite power  
+    - **Energy signals:** finite energy, zero power
+    - **Power signals:** infinite energy, finite power
     - **Neither:** infinite energy and infinite power
     """
     )

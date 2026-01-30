@@ -1,10 +1,11 @@
-import streamlit as st
-from core.signals import get_available_signals, get_signal_modes
 import copy
 
-from ui.build_signals import build_signal_ui
-from ui.plots import plot_signal
-from utils.time_axis import TimeAxis
+import streamlit as st
+
+from src.core.signals import get_available_signals, get_signal_modes
+from src.ui.build_signals import build_signal_ui
+from src.ui.plots import plot_signal
+from src.utils.time_axis import TimeAxis
 
 
 def run_basic_operations_module():

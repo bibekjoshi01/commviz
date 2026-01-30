@@ -1,16 +1,16 @@
-import streamlit as st
 import numpy as np
+import streamlit as st
 
-from core.signals import (
+from src.core.signals import (
+    exponential,
+    ramp,
     rectangular_pulse,
     signum_signal,
     sinc_signal,
+    sinusoid,
     triangular_wave,
     unit_impulse,
     unit_step,
-    ramp,
-    exponential,
-    sinusoid,
 )
 
 

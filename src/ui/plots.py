@@ -13,7 +13,7 @@ def plot_signal(
     padding=0.05,  # 5% padding when autoscaling
     height=400,
     show_grid=True,
-    enable_zero_line=False
+    enable_zero_line=False,
 ):
     fig = go.Figure()
 

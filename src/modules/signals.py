@@ -1,10 +1,11 @@
-import streamlit as st
 import numpy as np
+import streamlit as st
 
-from core.signals import get_available_signals, get_signal_modes
-from ui.build_signals import build_signal_ui
-from ui.plots import plot_signal
-from utils.time_axis import TimeAxis
+# Project Imports
+from src.core.signals import get_available_signals, get_signal_modes
+from src.ui.build_signals import build_signal_ui
+from src.ui.plots import plot_signal
+from src.utils.time_axis import TimeAxis
 
 
 def run_signals_module():
@@ -95,7 +96,7 @@ def run_signals_module():
             y_range = (y_min, y_max)
 
         st.text("Other Parameters")
-        
+
         p1, p2 = st.columns(2)
         with p1:
             enable_zero_line = st.checkbox("Zero Line", value=False, help=None)
