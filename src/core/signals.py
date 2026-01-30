@@ -56,8 +56,8 @@ class Signal:
         return self.func(t_final, **self.params)
 
     # -------- Transformations --------
-    def time_shift(self, tau_by_a):
-        self._time_shift += tau_by_a
+    def time_shift(self, tau):
+        self._time_shift += tau
         return self
 
     def time_scale(self, a):
