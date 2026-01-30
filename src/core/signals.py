@@ -34,30 +34,30 @@ class Signal:
         if self._time_shift != 0.0:
             sign = "-" if self._time_shift > 0 else "+"
             t_str = f"{t_str}{sign}{abs(self._time_shift)}"
+            t_str = f"({t_str})"
 
-        # Replace standalone t in base formula
-        formula_str = re.sub(r"\bt\b", t_str, self._base_formula)
+        formula_str = self._base_formula
+        # Replace 't' only when not part of a function name (preceded by letter/underscore)
+        formula_str = re.sub(r"(?<![a-zA-Z_])t(?![a-zA-Z_])", t_str, formula_str)
 
         return f"{formula_str}"
 
     def evaluate(self, t):
-        # shift
-        t_shifted = t - self._time_shift
-
-        # time scale
-        t_scaled = self._time_scale * t_shifted
-
         # fold
         if self._fold:
-            t_final = -t_scaled
-        else:
-            t_final = t_scaled
+            t = -t
+
+        # scale
+        t_scaled = self._time_scale * t
+
+        # shift
+        t_final = t_scaled - self._time_shift
 
         return self.func(t_final, **self.params)
 
     # -------- Transformations --------
-    def time_shift(self, tau):
-        self._time_shift += tau
+    def time_shift(self, tau_by_a):
+        self._time_shift += tau_by_a
         return self
 
     def time_scale(self, a):
