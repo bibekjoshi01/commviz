@@ -5,6 +5,23 @@ from src.modules.energy_power_signals import run_energy_power_module
 from src.modules.signals import run_signals_module
 
 st.set_page_config(layout="wide", page_title="CS Viz", menu_items={})
+
+# Reduce top padding of the main container
+st.markdown(
+    """
+    <style>
+    .block-container {
+        padding-top: 2.5rem;
+        padding-bottom: 0rem;
+    }
+    header {
+        background-color: transparent !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.sidebar.markdown("## Comm. Systems Visualizer")
 st.sidebar.markdown("---")
 
